@@ -1,0 +1,12 @@
+<div class = "row">
+    <div class = "panel panel-default">
+        <div class = "panel panel-heading">
+            <h4 class = "panel-title">{{date}}
+                {{convertToStandardDate({date:weatherDay.dt}) | date: dateFilter }}
+            </h4>
+        </div>
+        <div class = "panel-body">
+            Daytime temperature : {{convertToStandardTemperature({temperature : weatherDay.temp.day})}}°C
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<html ng-app = "weatherApp">
+    <head>
+        <title>Weather App</title>
+
+        <link rel = "stylesheet" href = "bootstrap.min.css" />
+        <link rel = "stylesheet" href = "font-awesome.min.css" />
+
+        <style>
+            html, body, input, select, textarea{
+                font-size: 1.05em !important;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <header>
+            <nav class = "navbar navbar-default">
+                <div class = "container">
+                    <div class = "navbar-header">
+                        <a class = navbar-brand href = "/"> Weather app</a>
+                    </div>
+
+                    <ul class = "nav navbar-nav navbar-right">
+                        <li>
+                            <a href = "#/"><em>Home</em></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div class = "container">
+            <div ng-view></div>
+        </div>
+
+
+        <script type = "text/javascript" src = "angular-1.5.8.js"></script>
+        <script type = "text/javascript" src = "angular-route.js"></script>
+        <script type = "text/javascript" src = "angular-resource.js"></script>
+        <script type = "text/javascript" src = "app.js"></script>
+        <script type = "text/javascript" src = "routes.js"></script>
+        <script type = "text/javascript" src = "controllers.js"></script>
+        <script type = "text/javascript" src = "services.js"></script>
+        <script type = "text/javascript" src = "directives.js"></script>
+
+    </body>
+</html>

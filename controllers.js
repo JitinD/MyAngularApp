@@ -1,4 +1,4 @@
-weatherApp.controller("homeController", ["$scope", "appService", function (scope, service) {
+weatherApp.controller("homeController", ["$scope", "appService", "$location", function (scope, service, location) {
 
     scope.city = service.city;
 
@@ -6,28 +6,25 @@ weatherApp.controller("homeController", ["$scope", "appService", function (scope
         service.city = scope.city
     });
 
+    scope.submitForm = function(){
+        location.path("/forecast")
+    }
+
 }]);
 
 
-weatherApp.controller("forecastController", ["$scope", "appService", "$resource", "$routeParams", function (scope, service, resource, routeParams) {
+weatherApp.controller("forecastController", ["$scope", "appService", "$routeParams", "apiResourceService", function (scope, appService, routeParams, apiResourceService) {
 
-    scope.city = service.city;
+    scope.city = appService.city;
     scope.days = routeParams.days || 2;
-    scope.weatherAPI = resource("http://api.openweathermap.org/data/2.5/forecast/daily", {callback: "JSON_CALLBACK"}, {get: {method: "JSONP"}});
-    scope.results = scope.weatherAPI.get({
-        q: scope.city,
-        cnt: scope.days,
-        mode: "json",
-        appid: "d975b92f2ac52667853673afaf17d226"
-    });
+
+    scope.results = apiResourceService.getResults(scope.city, scope.days);
 
     scope.convertToCelsius = function (tempInKelvin) {
-        console.log(Math.round(tempInKelvin - 273.15));
         return Math.round(tempInKelvin - 273.15);
     }
 
     scope.convertToDate = function (date) {
-        console.log(new Date(date * 1000));
         return new Date(date * 1000);
     }
 
